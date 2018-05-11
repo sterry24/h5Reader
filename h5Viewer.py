@@ -1,14 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-
-__author__  = "Stephen Terry"
-__date__    = "07/19/2017"
-__version__ = " Version 0.1"
-
+#!/usr/bin/env python
 
 import os
 import sys
@@ -28,7 +18,6 @@ class MainForm(QDialog):
         treeLabel = QLabel("Tree")
         self.treeWidget = QTreeWidget()
         self.treeWidget.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.treeWidget.customContextMenuRequested.connect(self.vHeaderMenu)
         self.treeWidget.clear()
         self.treeWidget.setColumnCount(1)
         self.treeWidget.setHeaderLabels(["Groups"])
@@ -41,20 +30,6 @@ class MainForm(QDialog):
         self.h5File = r''
         self.populateTree()
         
-    def vHeaderMenu(self,position):
-        
-        indexes = self.treeWidget.selectedIndexes()
-        
-        menu = QMenu()
-        submenu = QMenu("Plot")
-        pltImgAction = QAction("Plot Image",self)
-        pltXYAction = QAction("Plot X v Y",self)
-        pltImgAction.triggered.connect(lambda: self.doNothing(val = indexes))
-        pltXYAction.triggered.connect(lambda: self.doNothing(val = indexes))
-        submenu.addAction(pltImgAction)
-        submenu.addAction(pltXYAction)
-        menu.addMenu(submenu)
-        menu.exec_(self.treeWidget.viewport().mapToGlobal(position))   
         
     def doNothing(self,val = None):
         
@@ -84,10 +59,9 @@ class MainForm(QDialog):
         self.treeItems = {}
         self.rootPopulated = False
         self.addBranches()
-        #print "File load complete"
+
         
     def addBranches(self,parent="/"):
-        #print "Adding branches for %s" % parent
         ## Check the root for attributes
         if not self.rootPopulated:
             self.rootPopulated = True
@@ -98,7 +72,6 @@ class MainForm(QDialog):
         for k in self.h5[parent].keys():
             name = k
             
-            #ancestor = self.treeItems.get(parent.split('/')[-1])
             ancestor = self.treeItems.get(parent[1:])
             if ancestor is None:
                 ancestor = QTreeWidgetItem(self.treeWidget,[name])

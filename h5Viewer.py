@@ -19,13 +19,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-import pdb
 class MainForm(QDialog):
     
     def __init__(self,parent=None):

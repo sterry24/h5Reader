@@ -44,7 +44,7 @@ class MainForm(QDialog):
         self.setLayout(self.layout)
         self.setWindowTitle("H5Viewer")
         #self.setH5File()
-        self.h5File = r'S:\\Stephen\\Desktop\\DATA\\quicklook_ETV10052.h5'
+        self.h5File = r''
         self.populateTree()
         
     def vHeaderMenu(self,position):
@@ -85,8 +85,7 @@ class MainForm(QDialog):
         self.treeWidget.setColumnCount(1)
         self.treeWidget.setHeaderLabels(["Groups"])
         self.treeWidget.setItemsExpandable(True)
-        
-        #self.h5File=r"R:\Field_Tests\ED06\data_products\ETV10050\quicklook_ETV10050.h5"
+       
         self.h5 = h5py.File(self.h5File,'r')
         self.treeItems = {}
         self.rootPopulated = False
